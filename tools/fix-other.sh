@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+#set -e
 root_dir=$(cd `dirname $0`/.. && pwd -P)
 srcdir=$root_dir
 tmp_dir="$root_dir/tmp"
@@ -10,7 +10,7 @@ package_dir="$root_dir/package.nw"
 # 1. 代码依赖分析不可用
 # 2. 拓展中的“SERVICE MARKET RECOMMENDS”功能不可用
 echo "fix: webview manager"
-sed -i 's#module.exports = createWebviewManager;#module.exports = createWebviewManager,( /** @type {any} */ (window)).createWebviewManager = createWebviewManager;#g' "$package_dir/js/libs/vseditor/webview-resource/main.js"
+sed 's#module.exports = createWebviewManager;#module.exports = createWebviewManager,( /** @type {any} */ (window)).createWebviewManager = createWebviewManager;#g' "$package_dir/js/libs/vseditor/webview-resource/main.js" > /tmp/sed_file ; cat /tmp/sed_file > "$package_dir/js/libs/vseditor/webview-resource/main.js"
 
 # 修复：可视化用的wcc,wcsc
 echo "fix: wcc,wcsc"
@@ -19,8 +19,8 @@ ls -l "${srcdir}/compiler"
 # 可视化编译
 (cd "${package_dir}/node_modules/" \
 && rm -rf wcc \
-&& cp -rL "${srcdir}/compiler/wcc_node" "wcc" \
-&& chmod +x wcc/bin/linux/*
+&& cp -rL "${srcdir}/compiler/wcc_node" "wcc" || true \
+&& chmod +x wcc/bin/linux/* || true
 )
 
 # 预览编译，设置 WINE!=true 环境变量生效
