@@ -12,7 +12,7 @@ const parseFile = function (path) {
 
     content.name = "wechat-devtools";
     // 开启调试，更新参数
-    content['chromium-args'] = content['chromium-args'].replace('--disable-devtools', '--mixed-context').replace('--ignore-gpu-blacklist', '--ignore-gpu-blocklist')
+    content['chromium-args'] = content['chromium-args'].replace('--disable-devtools', '--mixed-context').replace('--ignore-gpu-blacklist', '--ignore-gpu-blocklist').replace('--harmony-weak-refs', '')
     content.window.height = content.window.width = 1000
     fs.writeFileSync(path, JSON.stringify(content));
 
