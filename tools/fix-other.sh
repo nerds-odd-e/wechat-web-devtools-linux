@@ -19,8 +19,8 @@ ls -l "${srcdir}/compiler"
 # 可视化编译
 (cd "${package_dir}/node_modules/" \
 && rm -rf wcc \
-&& cp -rL "${srcdir}/compiler/wcc_node" "wcc" || true \
-&& chmod +x wcc/bin/linux/* || true
+&& cp -rL "${srcdir}/compiler/wcc_node" "wcc" \
+&& chmod +x wcc/bin/linux/*
 )
 
 # 预览编译，设置 WINE!=true 环境变量生效

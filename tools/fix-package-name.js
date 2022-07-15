@@ -12,14 +12,14 @@ const parseFile = function (path) {
 
     content.name = "wechat-devtools";
     // 开启调试，更新参数
-    content['chromium-args'] = content['chromium-args'].replace('--disable-devtools', '--mixed-context').replace('--ignore-gpu-blacklist', '--ignore-gpu-blocklist').replace('--harmony-weak-refs', '')
+    content['chromium-args'] = content['chromium-args'].replace('--disable-devtools', '--mixed-context').replace('--ignore-gpu-blacklist', '--ignore-gpu-blocklist').replace('--harmony-weak-refs', '') + ' --no-sandbox --disable-dev-shm-usage';
     content.window.height = content.window.width = 1000
     fs.writeFileSync(path, JSON.stringify(content));
 
 };
 
 let basedir = __dirname;
-if(undefined !== process.env['srcdir'])
+if (undefined !== process.env['srcdir'])
     basedir = process.env['srcdir'] + '/tools';
 parseFile(path.resolve(basedir, "../package.nw/package.json"));
 parseFile(path.resolve(basedir, "../package.nw/package-lock.json"));

@@ -47,7 +47,7 @@ mkdir -p $tmp_dir
 extractPath="$tmp_dir/${parse[-1]}"
 rm -rf $extractPath
 mkdir -p $extractPath
-tar xf $localPath -C $extractPath || true
+tar xf $localPath -C $extractPath
 
 # 升级
 rm -rf "$root_dir/node"

@@ -20,7 +20,7 @@ fail() {
 }
 
 echo "start $UID"
-python --version
+python2 --version
 echo "docker node version: $( node --version )"
 
 cd /workspace

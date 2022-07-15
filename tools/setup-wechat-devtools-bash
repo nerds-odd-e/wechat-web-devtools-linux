@@ -59,7 +59,7 @@ if [ "$ACTION_MODE" != "true" ]; then
 fi
 echo "=====安装node-gyp nw-gyp===="
 npm uninstall node-gyp -g
-npm install node-gyp nw-gyp -g
+npm install node-gyp nw-gyp npm -g
 node-gyp install
 node-gyp list
 
